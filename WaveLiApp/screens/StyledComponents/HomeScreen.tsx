@@ -1,34 +1,55 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import Colors from '../../constants/Colors';
+import { Platform } from 'react-native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  padding:3%;
   background-color:${Colors.light.background};
-  width:70%;
+  ${Platform.select({ ios: css`width: 100%`, android: css`width: 100%`, default: css`width: 50%`,})};
   align-self: center;
 `;
 export const SearchInput = styled.TextInput`
-  /* flex:1; */
-  width:70%;
-  text-align: 'center';
-  padding:0.3%;
-  margin:10px;
-  margin-right:0;
-  border-width: 1;
-  border-color: 'black';
-  font-size: 14;
-  background-color: 'white';
-  border-radius:5;
+  flex:1;
+  padding:7px;
+  font-size: 14px;
+  background-color: white;
 `;
 
 export const SearchBtn = styled.TouchableOpacity`
-  margin:0.01%;
-  justify-content:"space-around";
+  justify-content:center;
+  padding:5px;
+`;
+
+export const SearchBar = styled.View`
+  flex-direction:row;
+  margin-top:15px;
+  border-width: 1px;
+  border-color: ${Colors.light.tint};
+  border-radius:10px;
 `;
 
 export const Row = styled.View`
-  justify-content:"center";
-  flex-direction:"column";
+  flex-direction:row;
+`;
+
+export const TitleHeader = styled.Text`
+  font-size:21px;
+  font-weight:bold;
+  text-align:left;
+  
+  ${Platform.select({ ios: css`margin-top:7%;`, android: css`margin-top:7%;`, default: css`margin-top:3%;`})};
+`;
+
+export const PressableTitleHeader = styled.Text`
+  font-size:21px;
+  ${props=>props.pressed?css`font-weight:bold`:css`font-weight:normal`};
+  ${props=>props.pressed?css`text-decoration: underline`:css`text-decoration:none`};
+  text-align:left;
+`;
+
+export const NavigationHeader = styled.View`
+  flex-direction:row;
+  justify-content:space-evenly;
+  margin-top:15px;
 `;
