@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/native'
-import Colors from '../../constants/Colors';
+import Colors from '../../assets/constants/Colors';
 import { Platform } from 'react-native';
+import {pressable} from '../../types'
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -41,10 +42,10 @@ export const TitleHeader = styled.Text`
   ${Platform.select({ ios: css`margin-top:7%;`, android: css`margin-top:7%;`, default: css`margin-top:3%;`})};
 `;
 
-export const PressableTitleHeader = styled.Text`
+export const PressableTitleHeader= styled.Text<pressable>`
   font-size:21px;
-  ${props=>props.pressed?css`font-weight:bold`:css`font-weight:normal`};
-  ${props=>props.pressed?css`text-decoration: underline`:css`text-decoration:none`};
+  ${({ pressed }) => (pressed?css`font-weight:bold`:css`font-weight:normal`)};
+  ${({ pressed }) => (pressed?css`text-decoration: underline`:css`text-decoration:none`)};
   text-align:left;
 `;
 

@@ -1,25 +1,27 @@
-import {SearchBtn, SearchInput, SearchBar, Container, TitleHeader, NavigationHeader, PressableTitleHeader} from './StyledComponents/HomeScreen'
-import { SafeAreaView, StatusBar } from 'react-native';
+import {SearchBtn, SearchInput, SearchBar, Container, TitleHeader, NavigationHeader, PressableTitleHeader} from './StyledComponents/HomeScreen.styles'
 
 import { RootTabScreenProps } from '../types';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import {fetchEvents} from './Components/FetchEvents'
+import { useAppDispatch } from '../redux/hooks'
+
 
 export default function HomeScreen({ navigation }: RootTabScreenProps<'TabThree'>) {
+  
+  const dispatch = useAppDispatch();
+
   const [Events, setEvents] = useState(true);
   const [People, setPeople] = useState(false);
   const [Groups, setGroups] = useState(false);
 
   return (
     <Container>
-      <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
       <TitleHeader>Find Something</TitleHeader>
       <SearchBar>
         <SearchBtn 
           onPress={()=>{
-            fetchEvents();
-            console.log("\n\n\nsearch btn pressed!")
+            fetchEvents(dispatch);
           }}
         >
           <MaterialIcons name="search" size={22} color={"black"} />
